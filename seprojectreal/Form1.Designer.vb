@@ -22,9 +22,6 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        ChkGuest = New CheckBox()
-        Chkadmin = New CheckBox()
-        Chkhousekeeping = New CheckBox()
         Label1 = New Label()
         Label2 = New Label()
         txtUsername = New TextBox()
@@ -32,37 +29,10 @@ Partial Class Form1
         linkSignUp = New LinkLabel()
         Label3 = New Label()
         btnLogin = New Button()
+        radAdmin = New RadioButton()
+        radGuest = New RadioButton()
+        radHousekeeping = New RadioButton()
         SuspendLayout()
-        ' 
-        ' ChkGuest
-        ' 
-        ChkGuest.AutoSize = True
-        ChkGuest.Location = New Point(404, 394)
-        ChkGuest.Name = "ChkGuest"
-        ChkGuest.Size = New Size(76, 27)
-        ChkGuest.TabIndex = 0
-        ChkGuest.Text = "Guest"
-        ChkGuest.UseVisualStyleBackColor = True
-        ' 
-        ' Chkadmin
-        ' 
-        Chkadmin.AutoSize = True
-        Chkadmin.Location = New Point(530, 394)
-        Chkadmin.Name = "Chkadmin"
-        Chkadmin.Size = New Size(82, 27)
-        Chkadmin.TabIndex = 1
-        Chkadmin.Text = "Admin"
-        Chkadmin.UseVisualStyleBackColor = True
-        ' 
-        ' Chkhousekeeping
-        ' 
-        Chkhousekeeping.AutoSize = True
-        Chkhousekeeping.Location = New Point(650, 394)
-        Chkhousekeeping.Name = "Chkhousekeeping"
-        Chkhousekeeping.Size = New Size(138, 27)
-        Chkhousekeeping.TabIndex = 2
-        Chkhousekeeping.Text = "housekeeping"
-        Chkhousekeeping.UseVisualStyleBackColor = True
         ' 
         ' Label1
         ' 
@@ -99,7 +69,7 @@ Partial Class Form1
         ' linkSignUp
         ' 
         linkSignUp.AutoSize = True
-        linkSignUp.Location = New Point(104, 394)
+        linkSignUp.Location = New Point(119, 394)
         linkSignUp.Name = "linkSignUp"
         linkSignUp.Size = New Size(66, 23)
         linkSignUp.TabIndex = 7
@@ -109,11 +79,11 @@ Partial Class Form1
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(22, 394)
+        Label3.Location = New Point(12, 394)
         Label3.Name = "Label3"
-        Label3.Size = New Size(86, 23)
+        Label3.Size = New Size(101, 23)
         Label3.TabIndex = 8
-        Label3.Text = "new user?"
+        Label3.Text = "New Guest?"
         ' 
         ' btnLogin
         ' 
@@ -124,11 +94,47 @@ Partial Class Form1
         btnLogin.Text = "login"
         btnLogin.UseVisualStyleBackColor = True
         ' 
+        ' radAdmin
+        ' 
+        radAdmin.AutoSize = True
+        radAdmin.Location = New Point(419, 390)
+        radAdmin.Name = "radAdmin"
+        radAdmin.Size = New Size(81, 27)
+        radAdmin.TabIndex = 10
+        radAdmin.TabStop = True
+        radAdmin.Text = "Admin"
+        radAdmin.UseVisualStyleBackColor = True
+        ' 
+        ' radGuest
+        ' 
+        radGuest.AutoSize = True
+        radGuest.Location = New Point(527, 390)
+        radGuest.Name = "radGuest"
+        radGuest.Size = New Size(75, 27)
+        radGuest.TabIndex = 11
+        radGuest.TabStop = True
+        radGuest.Text = "Guest"
+        radGuest.UseVisualStyleBackColor = True
+        ' 
+        ' radHousekeeping
+        ' 
+        radHousekeeping.AutoSize = True
+        radHousekeeping.Location = New Point(622, 390)
+        radHousekeeping.Name = "radHousekeeping"
+        radHousekeeping.Size = New Size(137, 27)
+        radHousekeeping.TabIndex = 12
+        radHousekeeping.TabStop = True
+        radHousekeeping.Text = "housekeeping"
+        radHousekeeping.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 23F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(radHousekeeping)
+        Controls.Add(radGuest)
+        Controls.Add(radAdmin)
         Controls.Add(btnLogin)
         Controls.Add(Label3)
         Controls.Add(linkSignUp)
@@ -136,11 +142,8 @@ Partial Class Form1
         Controls.Add(txtUsername)
         Controls.Add(Label2)
         Controls.Add(Label1)
-        Controls.Add(Chkhousekeeping)
-        Controls.Add(Chkadmin)
-        Controls.Add(ChkGuest)
         Name = "Form1"
-        Text = "Form1"
+        Text = "       "
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -155,4 +158,7 @@ Partial Class Form1
     Friend WithEvents linkSignUp As LinkLabel
     Friend WithEvents Label3 As Label
     Friend WithEvents btnLogin As Button
+    Friend WithEvents radAdmin As RadioButton
+    Friend WithEvents radGuest As RadioButton
+    Friend WithEvents radHousekeeping As RadioButton
 End Class

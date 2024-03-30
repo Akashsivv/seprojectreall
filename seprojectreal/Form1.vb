@@ -1,14 +1,15 @@
-﻿Public Class Form1
+﻿Imports System.Data.SqlClient
+Public Class Form1
 
-    Private Sub btnLogin_Click(sender As Object, e As EventArgs)
+    Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Dim selectedUserType As String = ""
 
-        ' Check which checkboxes are checked
-        If Chkadmin.Checked Then
+        ' Check which radio button is selected
+        If radAdmin.Checked Then
             selectedUserType = "Admin"
-        ElseIf ChkGuest.Checked Then
+        ElseIf radGuest.Checked Then
             selectedUserType = "Guest"
-        ElseIf Chkhousekeeping.Checked Then
+        ElseIf radHousekeeping.Checked Then
             selectedUserType = "Housekeeping"
         Else
             MessageBox.Show("Please select a user type.")
@@ -23,27 +24,62 @@
         If AuthenticateUser(selectedUserType, username, password) Then
             MessageBox.Show("Logged in as " & selectedUserType)
             ' Proceed to appropriate functionality based on user type
+            Select Case selectedUserType
+                Case "Admin"
+                    Dim adminForm As New adminform()
+                    adminForm.Show()
+                    Me.Hide() ' Hide the login form
+                Case "Guest"
+                    Dim guestForm As New guestform()
+                    guestForm.Show()
+                    Me.Hide() ' Hide the login form
+                Case "Housekeeping"
+                    Dim housekeepingForm As New housekeepingform()
+                    housekeepingForm.Show()
+                    Me.Hide() ' Hide the login form
+            End Select
         Else
             MessageBox.Show("Invalid credentials for " & selectedUserType)
         End If
     End Sub
 
     Private Function AuthenticateUser(userType As String, username As String, password As String) As Boolean
-        ' Perform authentication based on user type
-        ' You need to implement this function to authenticate against the respective database/table for each user type
-        ' Example pseudocode:
-        ' If userType = "Admin", authenticate against admin database/table
-        ' If userType = "Guest", authenticate against guest database/table
-        ' If userType = "Housekeeping", authenticate against housekeeping database/table
-        Return False ' Placeholder return value, replace with actual authentication logic
+        Dim connectionString As String = "Data Source=LAPTOP-AGD0GN4V;Initial Catalog=Gustroomgmt;Integrated Security=True"
+        Dim query As String = ""
+
+        Select Case userType
+            Case "Admin"
+                query = "SELECT COUNT(*) FROM Admin WHERE Username = @Username AND Password = @Password"
+            Case "Guest"
+                query = "SELECT COUNT(*) FROM Guest WHERE Username = @Username AND Password = @Password"
+            Case "Housekeeping"
+                query = "SELECT COUNT(*) FROM Housekeeping WHERE Username = @Username AND Password = @Password"
+            Case Else
+                Return False ' Invalid user type
+        End Select
+
+        Try
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
+                Using command As New SqlCommand(query, connection)
+                    command.Parameters.AddWithValue("@Username", username)
+                    command.Parameters.AddWithValue("@Password", password)
+                    Dim count As Integer = Convert.ToInt32(command.ExecuteScalar())
+                    Return count > 0
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+            Return False ' Error occurred during authentication
+        End Try
     End Function
 
-    Private Sub linkSignUp_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
+
+    Private Sub linkSignUp_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles linkSignUp.LinkClicked
         ' Open the signup form
-        Dim signUpForm As New signUpForm()
+        Dim signUpForm As New SignUpForm()
         signUpForm.Show()
         Me.Hide() ' Hide the login form
     End Sub
-
 
 End Class
