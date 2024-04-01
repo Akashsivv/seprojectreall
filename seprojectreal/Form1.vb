@@ -30,8 +30,8 @@ Public Class Form1
                     adminForm.Show()
                     Me.Hide() ' Hide the login form
                 Case "Guest"
-                    Dim guestForm As New guestform()
-                    guestForm.Show()
+                    Dim guestForm As New guestformx()
+                    guestformx.Show()
                     Me.Hide() ' Hide the login form
                 Case "Housekeeping"
                     Dim housekeepingForm As New housekeepingform()

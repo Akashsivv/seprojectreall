@@ -388,7 +388,7 @@ Partial Class adminForm2
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(806, 498)
         Controls.Add(Button2)
         Controls.Add(btnBack)
         Controls.Add(CheckBox10)
