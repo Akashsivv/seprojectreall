@@ -105,7 +105,7 @@ Partial Class guestform
         ' 
         ComboBox1.FormattingEnabled = True
         ComboBox1.Items.AddRange(New Object() {"201", "202", "203", "204", "205", "", "101", "102", "103", "104", "105"})
-        ComboBox1.Location = New Point(591, 147)
+        ComboBox1.Location = New Point(580, 147)
         ComboBox1.Name = "ComboBox1"
         ComboBox1.Size = New Size(151, 28)
         ComboBox1.TabIndex = 7
