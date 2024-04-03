@@ -9,9 +9,17 @@
         guestForm.Show()
     End Sub
 
-    ' Event handler for Button2 (REQUEST HOUSEKEEPING)
+    ' Event handlPrivate Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    ' List of room numbers
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        ' Write your code to handle Button2 click event here
-        ' For example, you can open another form or perform some action
+        ' List of room numbers
+        Dim roomNumbers As String() = {"101", "102", "103", "104", "105", "201", "202", "203", "204", "205"}
+
+        ' Open Guestform0 for each room
+        For Each roomNumber As String In roomNumbers
+            Dim guestForm As New GuestForm0(roomNumber)
+            guestForm.Show()
+        Next
     End Sub
 End Class
+

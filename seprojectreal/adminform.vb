@@ -25,8 +25,5 @@ Partial Public Class adminform
     End Sub
 
     ' Handle the Click event of Button3
-    Private Sub Button3_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button3.Click
-        ' Show adminform4 when Button3 is clicked
-        adminForm4.Show()
-    End Sub
+
 End Class
