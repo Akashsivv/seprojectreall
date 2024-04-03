@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Guid
 
 Public Class guestform
     Inherits System.Windows.Forms.Form
@@ -54,34 +55,65 @@ Public Class guestform
         Dim roomType As String = ComboBox2.SelectedItem.ToString()
         Dim roomNumber As String = ComboBox1.SelectedItem.ToString()
 
-        ' Store booking details in the database
+        ' Check if the room is already booked for the selected dates
+        If IsRoomBooked(roomNumber, checkInDate, checkOutDate) Then
+            MessageBox.Show("This room is already booked for the selected dates. Please choose another room or select different dates.", "Room Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' Generate a random booking ID
+        Dim bookingId As String = Guid.NewGuid().ToString()
+
+        ' Open billing form modally
+        Dim billingForm As New billing()
+        If billingForm.ShowDialog() = DialogResult.OK Then
+            ' Booking successful, proceed with booking
+            Try
+                Using connection As New SqlConnection(connectionString)
+                    connection.Open()
+                    Dim query As String = "INSERT INTO Bookings (BookingId, CheckInDate, CheckOutDate, RoomType, RoomNumber) VALUES (@bookingId, @checkIn, @checkOut, @roomType, @roomNumber)"
+                    Using command As New SqlCommand(query, connection)
+                        command.Parameters.AddWithValue("@bookingId", bookingId)
+                        command.Parameters.AddWithValue("@checkIn", checkInDate)
+                        command.Parameters.AddWithValue("@checkOut", checkOutDate)
+                        command.Parameters.AddWithValue("@roomType", roomType)
+                        command.Parameters.AddWithValue("@roomNumber", roomNumber)
+                        command.ExecuteNonQuery()
+                    End Using
+                End Using
+
+                ' Display confirmation message
+                MessageBox.Show("Room booked successfully!", "Booking Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' Clear the form or perform any other actions as needed
+                ResetForm()
+
+            Catch ex As Exception
+                MessageBox.Show("Error occurred while booking the room: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    ' Check if the room is already booked for the selected dates
+    Private Function IsRoomBooked(roomNumber As String, checkInDate As DateTime, checkOutDate As DateTime) As Boolean
+        Dim isBooked As Boolean = False
         Try
             Using connection As New SqlConnection(connectionString)
                 connection.Open()
-                Dim query As String = "INSERT INTO Bookings (CheckInDate, CheckOutDate, RoomType, RoomNumber) VALUES (@checkIn, @checkOut, @roomType, @roomNumber)"
+                Dim query As String = "SELECT COUNT(*) FROM Bookings WHERE RoomNumber = @roomNumber AND CheckInDate < @checkOut AND CheckOutDate > @checkIn"
                 Using command As New SqlCommand(query, connection)
+                    command.Parameters.AddWithValue("@roomNumber", roomNumber)
                     command.Parameters.AddWithValue("@checkIn", checkInDate)
                     command.Parameters.AddWithValue("@checkOut", checkOutDate)
-                    command.Parameters.AddWithValue("@roomType", roomType)
-                    command.Parameters.AddWithValue("@roomNumber", roomNumber)
-                    command.ExecuteNonQuery()
+                    Dim count As Integer = Convert.ToInt32(command.ExecuteScalar())
+                    isBooked = count > 0
                 End Using
             End Using
-
-            ' Display confirmation message
-            MessageBox.Show("Room booked successfully!", "Booking Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            ' Open billing form
-            Dim billingvb As New billing()
-            billingvb.Show()
-
-            ' Clear the form or perform any other actions as needed
-            ResetForm()
-
         Catch ex As Exception
-            MessageBox.Show("Error occurred while booking the room: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error occurred while checking room availability: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Sub
+        Return isBooked
+    End Function
 
     ' Reset the form to its initial state
     Private Sub ResetForm()
@@ -93,6 +125,7 @@ Public Class guestform
 
     ' Handle "Back" button click event
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+        ' Close the
         ' Close the current form (guestform) to go back to guestformx
         Me.Close()
 
@@ -103,7 +136,3 @@ Public Class guestform
 
     ' Handle "Request Housekeeping" button click event
 End Class
-
-
-
-
