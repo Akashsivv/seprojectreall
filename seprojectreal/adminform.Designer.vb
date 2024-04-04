@@ -26,6 +26,7 @@ Partial Class adminform
         Button2 = New Button()
         Label1 = New Label()
         Label2 = New Label()
+        Button3 = New Button()
         SuspendLayout()
         ' 
         ' Button1
@@ -64,11 +65,21 @@ Partial Class adminform
         Label2.TabIndex = 4
         Label2.Text = "APSARA GUESTROOMS"
         ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(504, 324)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(94, 29)
+        Button3.TabIndex = 5
+        Button3.Text = "sign out"
+        Button3.UseVisualStyleBackColor = True
+        ' 
         ' adminform
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(711, 391)
+        Controls.Add(Button3)
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(Button2)
@@ -83,4 +94,5 @@ Partial Class adminform
     Friend WithEvents Button2 As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
+    Friend WithEvents Button3 As Button
 End Class

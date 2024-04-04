@@ -43,7 +43,6 @@ Partial Class adminForm2
         Label9 = New Label()
         Label10 = New Label()
         btnBack = New Button()
-        Button2 = New Button()
         Label11 = New Label()
         Label12 = New Label()
         Label13 = New Label()
@@ -218,15 +217,6 @@ Partial Class adminForm2
         btnBack.Text = "BACK"
         btnBack.UseVisualStyleBackColor = True
         ' 
-        ' Button2
-        ' 
-        Button2.Location = New Point(474, 409)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 46
-        Button2.Text = "OK"
-        Button2.UseVisualStyleBackColor = True
-        ' 
         ' Label11
         ' 
         Label11.AutoSize = True
@@ -256,13 +246,12 @@ Partial Class adminForm2
         ' 
         ' adminForm2
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(806, 498)
         Controls.Add(Label13)
         Controls.Add(Label12)
         Controls.Add(Label11)
-        Controls.Add(Button2)
         Controls.Add(btnBack)
         Controls.Add(Label10)
         Controls.Add(Label9)
@@ -311,7 +300,6 @@ Partial Class adminForm2
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents btnBack As Button
-    Friend WithEvents Button2 As Button
     Friend WithEvents Label11 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents Label13 As Label

@@ -6,7 +6,7 @@ Partial Public Class adminform
     ' Define instances of the forms you want to open
     Private adminForm2 As New adminForm2()
     Private adminForm3 As New adminForm3()
-    Private adminForm4 As New adminForm4()
+
 
     Public Sub New()
         InitializeComponent()
@@ -23,7 +23,11 @@ Partial Public Class adminform
         ' Show adminform3 when Button2 is clicked
         adminForm3.Show()
     End Sub
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        ' Show form.vb
+        Dim formInstance As New Form1()
+        Form1.Show()
+    End Sub
 
-    ' Handle the Click event of Button3
 
 End Class

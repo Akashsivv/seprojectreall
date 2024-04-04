@@ -14,8 +14,8 @@ Public Class adminForm3
             ' Open the connection
             connection.Open()
 
-            ' Define the SQL query to select booking details with guest full names
-            Dim query As String = "SELECT Guest.FullName, Bookings.* FROM Guest INNER JOIN Bookings ON Guest.CID = Bookings.CID"
+            ' Define the SQL query to select all columns from the Bookings table
+            Dim query As String = "SELECT * FROM Bookings"
 
             ' Create a SqlDataAdapter to execute the query and fill the DataTable
             Using adapter As New SqlDataAdapter(query, connection)
@@ -30,4 +30,13 @@ Public Class adminForm3
             End Using
         End Using
     End Sub
+    Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+        ' Close the current form (HousekeepingForm)
+        Me.Close()
+
+        ' Show the adminForm
+        Dim adminFormInstance As New adminform()
+        adminFormInstance.Show()
+    End Sub
+
 End Class

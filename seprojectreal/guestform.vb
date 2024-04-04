@@ -54,6 +54,7 @@ Public Class guestform
         Dim checkOutDate As DateTime = DateTimePicker2.Value
         Dim roomType As String = ComboBox2.SelectedItem.ToString()
         Dim roomNumber As String = ComboBox1.SelectedItem.ToString()
+        Dim guestName As String = nametext.Text ' Get the guest name from the textbox
 
         ' Check if the room is already booked for the selected dates
         If IsRoomBooked(roomNumber, checkInDate, checkOutDate) Then
@@ -71,9 +72,10 @@ Public Class guestform
             Try
                 Using connection As New SqlConnection(connectionString)
                     connection.Open()
-                    Dim query As String = "INSERT INTO Bookings (BookingId, CheckInDate, CheckOutDate, RoomType, RoomNumber) VALUES (@bookingId, @checkIn, @checkOut, @roomType, @roomNumber)"
+                    Dim query As String = "INSERT INTO Bookings (BookingId, GuestName, CheckInDate, CheckOutDate, RoomType, RoomNumber) VALUES (@bookingId, @guestName, @checkIn, @checkOut, @roomType, @roomNumber)"
                     Using command As New SqlCommand(query, connection)
                         command.Parameters.AddWithValue("@bookingId", bookingId)
+                        command.Parameters.AddWithValue("@guestName", guestName) ' Set the guest name parameter
                         command.Parameters.AddWithValue("@checkIn", checkInDate)
                         command.Parameters.AddWithValue("@checkOut", checkOutDate)
                         command.Parameters.AddWithValue("@roomType", roomType)
@@ -121,6 +123,7 @@ Public Class guestform
         DateTimePicker2.Value = DateTime.Today.AddDays(1) ' Reset check-out date to tomorrow
         ComboBox2.SelectedIndex = 0 ' Reset room type to the first option
         ComboBox1.Items.Clear() ' Clear room numbers selection
+        nametext.Text = "" ' Clear guest name textbox
     End Sub
 
     ' Handle "Back" button click event

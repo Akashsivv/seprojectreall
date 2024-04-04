@@ -38,6 +38,8 @@ Partial Class guestform
         Label5 = New Label()
         Label6 = New Label()
         Label7 = New Label()
+        nametext = New TextBox()
+        Label8 = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -173,11 +175,29 @@ Partial Class guestform
         Label7.TabIndex = 14
         Label7.Text = "AC(RS.2000 PERNIGHT)"
         ' 
+        ' nametext
+        ' 
+        nametext.Location = New Point(103, 42)
+        nametext.Name = "nametext"
+        nametext.Size = New Size(125, 27)
+        nametext.TabIndex = 15
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Location = New Point(28, 49)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(51, 20)
+        Label8.TabIndex = 16
+        Label8.Text = "NAME"
+        ' 
         ' guestform
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(816, 532)
+        Controls.Add(Label8)
+        Controls.Add(nametext)
         Controls.Add(Label7)
         Controls.Add(Label6)
         Controls.Add(Label5)
@@ -216,4 +236,6 @@ Partial Class guestform
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents nametext As TextBox
+    Friend WithEvents Label8 As Label
 End Class

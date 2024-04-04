@@ -22,52 +22,52 @@ Partial Class adminForm3
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.btnBack = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
+        DataGridView1 = New DataGridView()
+        btnBack = New Button()
+        Button2 = New Button()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        SuspendLayout()
         ' 
         ' DataGridView1
         ' 
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 12)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowTemplate.Height = 28
-        Me.DataGridView1.Size = New System.Drawing.Size(776, 377)
-        Me.DataGridView1.TabIndex = 0
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView1.Location = New Point(12, 12)
+        DataGridView1.Name = "DataGridView1"
+        DataGridView1.RowHeadersWidth = 51
+        DataGridView1.RowTemplate.Height = 28
+        DataGridView1.Size = New Size(776, 377)
+        DataGridView1.TabIndex = 0
         ' 
         ' btnBack
         ' 
-        Me.btnBack.Location = New System.Drawing.Point(609, 409)
-        Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(94, 29)
-        Me.btnBack.TabIndex = 1
-        Me.btnBack.Text = "BACK"
-        Me.btnBack.UseVisualStyleBackColor = True
+        btnBack.Location = New Point(609, 409)
+        btnBack.Name = "btnBack"
+        btnBack.Size = New Size(94, 29)
+        btnBack.TabIndex = 1
+        btnBack.Text = "BACK"
+        btnBack.UseVisualStyleBackColor = True
         ' 
         ' Button2
         ' 
-        Me.Button2.Location = New System.Drawing.Point(474, 409)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(94, 29)
-        Me.Button2.TabIndex = 2
-        Me.Button2.Text = "OK"
-        Me.Button2.UseVisualStyleBackColor = True
+        Button2.Location = New Point(474, 409)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(94, 29)
+        Button2.TabIndex = 2
+        Button2.Text = "OK"
+        Button2.UseVisualStyleBackColor = True
         ' 
         ' adminForm3
         ' 
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(806, 498)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.btnBack)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Name = "adminForm3"
-        Me.Text = "adminForm3"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
-
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(806, 498)
+        Controls.Add(Button2)
+        Controls.Add(btnBack)
+        Controls.Add(DataGridView1)
+        Name = "adminForm3"
+        Text = "adminForm3"
+        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        ResumeLayout(False)
     End Sub
 
     Friend WithEvents DataGridView1 As DataGridView

@@ -9,8 +9,7 @@ Public Class Form1
             selectedUserType = "Admin"
         ElseIf radGuest.Checked Then
             selectedUserType = "Guest"
-        ElseIf radHousekeeping.Checked Then
-            selectedUserType = "Housekeeping"
+
         Else
             MessageBox.Show("Please select a user type.")
             Return
@@ -33,9 +32,7 @@ Public Class Form1
                     Dim guestForm As New guestformx()
                     guestformx.Show()
                     Me.Hide() ' Hide the login form
-                Case "Housekeeping"
-                    Dim housekeepingForm As New housekeepingform()
-                    housekeepingForm.Show()
+
                     Me.Hide() ' Hide the login form
             End Select
         Else
@@ -82,4 +79,9 @@ Public Class Form1
         Me.Hide() ' Hide the login form
     End Sub
 
-End Class
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+            ' Close the application
+            Application.Exit()
+        End Sub
+    End Class
+

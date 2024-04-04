@@ -68,6 +68,17 @@ Public Class adminform2
         Return bookedRooms
     End Function
 
+    Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+        ' Close the current form (HousekeepingForm)
+        Me.Close()
+
+        ' Show the adminForm
+        Dim adminFormInstance As New adminform()
+        adminFormInstance.Show()
+    End Sub
+
+
+
     ' Other methods and event handlers of your form go here...
 
 End Class

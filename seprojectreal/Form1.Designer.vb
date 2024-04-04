@@ -31,47 +31,47 @@ Partial Class Form1
         btnLogin = New Button()
         radAdmin = New RadioButton()
         radGuest = New RadioButton()
-        radHousekeeping = New RadioButton()
+        Button1 = New Button()
         SuspendLayout()
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(169, 170)
+        Label1.Location = New Point(150, 148)
         Label1.Name = "Label1"
-        Label1.Size = New Size(98, 23)
+        Label1.Size = New Size(86, 20)
         Label1.TabIndex = 3
         Label1.Text = "USERNAME"
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(168, 237)
+        Label2.Location = New Point(149, 206)
         Label2.Name = "Label2"
-        Label2.Size = New Size(99, 23)
+        Label2.Size = New Size(87, 20)
         Label2.TabIndex = 4
         Label2.Text = "PASSWORD"
         ' 
         ' txtUsername
         ' 
-        txtUsername.Location = New Point(297, 163)
+        txtUsername.Location = New Point(264, 142)
         txtUsername.Name = "txtUsername"
-        txtUsername.Size = New Size(203, 30)
+        txtUsername.Size = New Size(181, 27)
         txtUsername.TabIndex = 5
         ' 
         ' txtPassword
         ' 
-        txtPassword.Location = New Point(297, 237)
+        txtPassword.Location = New Point(264, 206)
         txtPassword.Name = "txtPassword"
-        txtPassword.Size = New Size(203, 30)
+        txtPassword.Size = New Size(181, 27)
         txtPassword.TabIndex = 6
         ' 
         ' linkSignUp
         ' 
         linkSignUp.AutoSize = True
-        linkSignUp.Location = New Point(119, 394)
+        linkSignUp.Location = New Point(106, 343)
         linkSignUp.Name = "linkSignUp"
-        linkSignUp.Size = New Size(66, 23)
+        linkSignUp.Size = New Size(57, 20)
         linkSignUp.TabIndex = 7
         linkSignUp.TabStop = True
         linkSignUp.Text = "signup!"
@@ -79,17 +79,17 @@ Partial Class Form1
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(12, 394)
+        Label3.Location = New Point(11, 343)
         Label3.Name = "Label3"
-        Label3.Size = New Size(101, 23)
+        Label3.Size = New Size(87, 20)
         Label3.TabIndex = 8
         Label3.Text = "New Guest?"
         ' 
         ' btnLogin
         ' 
-        btnLogin.Location = New Point(339, 307)
+        btnLogin.Location = New Point(301, 267)
         btnLogin.Name = "btnLogin"
-        btnLogin.Size = New Size(94, 29)
+        btnLogin.Size = New Size(84, 25)
         btnLogin.TabIndex = 9
         btnLogin.Text = "login"
         btnLogin.UseVisualStyleBackColor = True
@@ -97,9 +97,9 @@ Partial Class Form1
         ' radAdmin
         ' 
         radAdmin.AutoSize = True
-        radAdmin.Location = New Point(419, 390)
+        radAdmin.Location = New Point(372, 339)
         radAdmin.Name = "radAdmin"
-        radAdmin.Size = New Size(81, 27)
+        radAdmin.Size = New Size(74, 24)
         radAdmin.TabIndex = 10
         radAdmin.TabStop = True
         radAdmin.Text = "Admin"
@@ -108,31 +108,29 @@ Partial Class Form1
         ' radGuest
         ' 
         radGuest.AutoSize = True
-        radGuest.Location = New Point(527, 390)
+        radGuest.Location = New Point(468, 339)
         radGuest.Name = "radGuest"
-        radGuest.Size = New Size(75, 27)
+        radGuest.Size = New Size(67, 24)
         radGuest.TabIndex = 11
         radGuest.TabStop = True
         radGuest.Text = "Guest"
         radGuest.UseVisualStyleBackColor = True
         ' 
-        ' radHousekeeping
+        ' Button1
         ' 
-        radHousekeeping.AutoSize = True
-        radHousekeeping.Location = New Point(622, 390)
-        radHousekeeping.Name = "radHousekeeping"
-        radHousekeeping.Size = New Size(137, 27)
-        radHousekeeping.TabIndex = 12
-        radHousekeeping.TabStop = True
-        radHousekeeping.Text = "housekeeping"
-        radHousekeeping.UseVisualStyleBackColor = True
+        Button1.Location = New Point(481, 267)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 12
+        Button1.Text = "close app"
+        Button1.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9F, 23F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
-        Controls.Add(radHousekeeping)
+        ClientSize = New Size(711, 391)
+        Controls.Add(Button1)
         Controls.Add(radGuest)
         Controls.Add(radAdmin)
         Controls.Add(btnLogin)
@@ -160,5 +158,5 @@ Partial Class Form1
     Friend WithEvents btnLogin As Button
     Friend WithEvents radAdmin As RadioButton
     Friend WithEvents radGuest As RadioButton
-    Friend WithEvents radHousekeeping As RadioButton
+    Friend WithEvents Button1 As Button
 End Class
