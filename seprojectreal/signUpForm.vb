@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Text.RegularExpressions
 
 Public Class SignUpForm
 
@@ -15,12 +16,15 @@ Public Class SignUpForm
         Dim newUsername As String = txtNewUsername.Text
         Dim newPassword As String = txtNewPassword.Text
 
-        ' Validate user input (you can add more validation as needed)
-        If String.IsNullOrWhiteSpace(fullName) OrElse String.IsNullOrWhiteSpace(email) OrElse
-            String.IsNullOrWhiteSpace(phoneNo) OrElse String.IsNullOrWhiteSpace(cid) OrElse
-            String.IsNullOrWhiteSpace(aadhaar) OrElse String.IsNullOrWhiteSpace(newUsername) OrElse
+        ' Validate user input
+        If String.IsNullOrWhiteSpace(fullName) OrElse
+            Not IsValidEmail(email) OrElse
+            Not IsValidPhone(phoneNo) OrElse
+            Not IsValidCID(cid) OrElse
+            Not IsValidAadhaar(aadhaar) OrElse
+            String.IsNullOrWhiteSpace(newUsername) OrElse
             String.IsNullOrWhiteSpace(newPassword) Then
-            MessageBox.Show("Please fill in all fields.")
+            MessageBox.Show("Please fill in all fields with valid data.")
             Return
         End If
 
@@ -69,8 +73,32 @@ Public Class SignUpForm
         End Try
     End Sub
 
+    ' Email validation function
+    Private Function IsValidEmail(email As String) As Boolean
+        ' Simple email pattern matching
+        Return Regex.IsMatch(email, "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
+    End Function
+
+    ' Phone number validation function
+    Private Function IsValidPhone(phone As String) As Boolean
+        ' Check if phone number is numeric and has 10 digits
+        Return Regex.IsMatch(phone, "^\d{10}$")
+    End Function
+
+    ' CID validation function
+    Private Function IsValidCID(cid As String) As Boolean
+        ' Check if CID is numeric and has 4 digits
+        Return Regex.IsMatch(cid, "^\d{4}$")
+    End Function
+
+    ' Aadhaar number validation function
+    Private Function IsValidAadhaar(aadhaar As String) As Boolean
+        ' Check if Aadhaar is numeric and has 12 digits
+        Return Regex.IsMatch(aadhaar, "^\d{12}$")
+    End Function
+
+    ' Clear all textboxes
     Private Sub ClearTextBoxes()
-        ' Clear all textboxes
         txtFullName.Clear()
         txtEmail.Clear()
         txtPhoneNo.Clear()
@@ -80,3 +108,4 @@ Public Class SignUpForm
         txtNewPassword.Clear()
     End Sub
 End Class
+
