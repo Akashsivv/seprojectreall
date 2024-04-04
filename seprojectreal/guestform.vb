@@ -62,24 +62,39 @@ Public Class guestform
             Return
         End If
 
-        ' Generate a random booking ID
-        Dim bookingId As String = Guid.NewGuid().ToString()
+        ' Calculate the number of nights stayed
+        Dim numberOfNights As Integer = (checkOutDate - checkInDate).Days
 
-        ' Open billing form modally
-        Dim billingForm As New billing()
-        If billingForm.ShowDialog() = DialogResult.OK Then
-            ' Booking successful, proceed with booking
+        ' Calculate the payment amount
+        Dim paymentAmount As Integer
+        If roomType = "AC" Then
+            paymentAmount = numberOfNights * 2000
+        Else
+            paymentAmount = numberOfNights * 1500
+        End If
+
+        ' Display payment amount in a message box
+        MessageBox.Show("Payment Amount: Rs. " & paymentAmount, "Payment Details", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        ' Open billing form
+        Dim billingForm As New billing(paymentAmount)
+        billingForm.ShowDialog()
+
+        ' Proceed with booking after payment successful
+        If billingForm.PaymentSuccessful Then
             Try
                 Using connection As New SqlConnection(connectionString)
                     connection.Open()
-                    Dim query As String = "INSERT INTO Bookings (BookingId, GuestName, CheckInDate, CheckOutDate, RoomType, RoomNumber) VALUES (@bookingId, @guestName, @checkIn, @checkOut, @roomType, @roomNumber)"
+                    Dim bookingId As String = Guid.NewGuid().ToString()
+                    Dim query As String = "INSERT INTO Bookings (GuestName, CheckInDate, CheckOutDate, RoomType, RoomNumber) VALUES (@guestName, @checkIn, @checkOut, @roomType, @roomNumber)"
                     Using command As New SqlCommand(query, connection)
                         command.Parameters.AddWithValue("@bookingId", bookingId)
-                        command.Parameters.AddWithValue("@guestName", guestName) ' Set the guest name parameter
+                        command.Parameters.AddWithValue("@guestName", guestName)
                         command.Parameters.AddWithValue("@checkIn", checkInDate)
                         command.Parameters.AddWithValue("@checkOut", checkOutDate)
                         command.Parameters.AddWithValue("@roomType", roomType)
                         command.Parameters.AddWithValue("@roomNumber", roomNumber)
+                        command.Parameters.AddWithValue("@paymentAmount", paymentAmount)
                         command.ExecuteNonQuery()
                     End Using
                 End Using
@@ -93,6 +108,8 @@ Public Class guestform
             Catch ex As Exception
                 MessageBox.Show("Error occurred while booking the room: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
+        Else
+            MessageBox.Show("Payment was not successful. Please try again.", "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 
@@ -128,7 +145,6 @@ Public Class guestform
 
     ' Handle "Back" button click event
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
-        ' Close the
         ' Close the current form (guestform) to go back to guestformx
         Me.Close()
 
@@ -139,3 +155,5 @@ Public Class guestform
 
     ' Handle "Request Housekeeping" button click event
 End Class
+
+

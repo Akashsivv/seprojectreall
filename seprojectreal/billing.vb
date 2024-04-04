@@ -1,34 +1,31 @@
-﻿Public Class Billing
-    Private Sub btnPayNow_Click(sender As Object, e As EventArgs) Handles btnPayNow.Click
-        ' Validate input fields
-        If String.IsNullOrEmpty(txtCardNumber.Text) OrElse String.IsNullOrEmpty(txtCVV.Text) Then
-            MessageBox.Show("Please fill in all required fields.", "Incomplete Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
+﻿Public Class billing
+    Inherits System.Windows.Forms.Form
 
-        ' Perform payment processing here (not implemented in this example)
-        ' You can add your payment processing logic here, such as connecting to a payment gateway, etc.
+    Private _paymentAmount As Integer
+    Private _paymentSuccessful As Boolean = False
 
-        ' Display payment success message
-        MessageBox.Show("Payment successful!", "Payment Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    Public Sub New(ByVal paymentAmount As Integer)
+        InitializeComponent()
 
-        ' Optionally, close the billing form after successful payment
-        Me.Close()
+        ' Set the payment amount
+        _paymentAmount = paymentAmount
     End Sub
 
-    Private Sub BillingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Populate combo boxes for expiration month and year
-        For i As Integer = 1 To 12
-            cmbMonth.Items.Add(i.ToString("00")) ' Add leading zero if necessary
-        Next
+    Public ReadOnly Property PaymentSuccessful As Boolean
+        Get
+            Return _paymentSuccessful
+        End Get
+    End Property
 
-        Dim currentYear As Integer = DateTime.Now.Year
-        For i As Integer = currentYear To currentYear + 10 ' Assume up to 10 years into the future
-            cmbYear.Items.Add(i.ToString())
-        Next
-
-        ' Set default values for expiration month and year
-        cmbMonth.SelectedIndex = 0 ' January
-        cmbYear.SelectedIndex = 0 ' Current year
+    Private Sub btnPayNow_Click(sender As Object, e As EventArgs) Handles btnPayNow.Click
+        ' Perform payment processing logic here
+        ' For demonstration purposes, let's assume payment is successful if CVV is provided
+        If txtCVV.Text <> "" Then
+            MessageBox.Show("Payment successful!", "Payment Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            _paymentSuccessful = True
+            Me.Close()
+        Else
+            MessageBox.Show("Please enter CVV to proceed with payment.", "CVV Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 End Class
