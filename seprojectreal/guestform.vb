@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Guid
+Imports System.Text.RegularExpressions
 
 Public Class guestform
     Inherits System.Windows.Forms.Form
@@ -44,6 +44,11 @@ Public Class guestform
     ' Handle "Book Room" button click event
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ' Perform validation
+        If Not ValidateName() Then
+            MessageBox.Show("Please enter a valid name with only letters.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         If DateTimePicker1.Value >= DateTimePicker2.Value Then
             MessageBox.Show("Check-out date must be after check-in date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -86,7 +91,7 @@ Public Class guestform
                 Using connection As New SqlConnection(connectionString)
                     connection.Open()
                     Dim bookingId As String = Guid.NewGuid().ToString()
-                    Dim query As String = "INSERT INTO Bookings (GuestName, CheckInDate, CheckOutDate, RoomType, RoomNumber) VALUES (@guestName, @checkIn, @checkOut, @roomType, @roomNumber)"
+                    Dim query As String = "INSERT INTO Bookings (GuestName, CheckInDate, CheckOutDate, RoomType, RoomNumber, PaymentAmount) VALUES (@guestName, @checkIn, @checkOut, @roomType, @roomNumber, @paymentAmount)"
                     Using command As New SqlCommand(query, connection)
                         command.Parameters.AddWithValue("@bookingId", bookingId)
                         command.Parameters.AddWithValue("@guestName", guestName)
@@ -112,6 +117,12 @@ Public Class guestform
             MessageBox.Show("Payment was not successful. Please try again.", "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
+
+    ' Function to validate the guest name
+    Private Function ValidateName() As Boolean
+        Dim regex As New Regex("^[a-zA-Z\s]+$") ' Regular expression to match only letters (including whitespace)
+        Return regex.IsMatch(nametext.Text)
+    End Function
 
     ' Check if the room is already booked for the selected dates
     Private Function IsRoomBooked(roomNumber As String, checkInDate As DateTime, checkOutDate As DateTime) As Boolean

@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Form1))
         Label1 = New Label()
         Label2 = New Label()
         txtUsername = New TextBox()
@@ -32,12 +33,14 @@ Partial Class Form1
         radAdmin = New RadioButton()
         radGuest = New RadioButton()
         Button1 = New Button()
+        Label4 = New Label()
         SuspendLayout()
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(150, 148)
+        Label1.ForeColor = Color.Blue
+        Label1.Location = New Point(235, 148)
         Label1.Name = "Label1"
         Label1.Size = New Size(86, 20)
         Label1.TabIndex = 3
@@ -46,7 +49,8 @@ Partial Class Form1
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(149, 206)
+        Label2.ForeColor = Color.Blue
+        Label2.Location = New Point(235, 213)
         Label2.Name = "Label2"
         Label2.Size = New Size(87, 20)
         Label2.TabIndex = 4
@@ -54,22 +58,22 @@ Partial Class Form1
         ' 
         ' txtUsername
         ' 
-        txtUsername.Location = New Point(264, 142)
+        txtUsername.Location = New Point(361, 148)
         txtUsername.Name = "txtUsername"
-        txtUsername.Size = New Size(181, 27)
+        txtUsername.Size = New Size(161, 27)
         txtUsername.TabIndex = 5
         ' 
         ' txtPassword
         ' 
-        txtPassword.Location = New Point(264, 206)
+        txtPassword.Location = New Point(361, 206)
         txtPassword.Name = "txtPassword"
-        txtPassword.Size = New Size(181, 27)
+        txtPassword.Size = New Size(161, 27)
         txtPassword.TabIndex = 6
         ' 
         ' linkSignUp
         ' 
         linkSignUp.AutoSize = True
-        linkSignUp.Location = New Point(106, 343)
+        linkSignUp.Location = New Point(94, 343)
         linkSignUp.Name = "linkSignUp"
         linkSignUp.Size = New Size(57, 20)
         linkSignUp.TabIndex = 7
@@ -79,7 +83,7 @@ Partial Class Form1
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(11, 343)
+        Label3.Location = New Point(10, 343)
         Label3.Name = "Label3"
         Label3.Size = New Size(87, 20)
         Label3.TabIndex = 8
@@ -87,17 +91,20 @@ Partial Class Form1
         ' 
         ' btnLogin
         ' 
-        btnLogin.Location = New Point(301, 267)
+        btnLogin.BackColor = Color.Green
+        btnLogin.ForeColor = Color.White
+        btnLogin.Location = New Point(268, 267)
         btnLogin.Name = "btnLogin"
-        btnLogin.Size = New Size(84, 25)
+        btnLogin.Size = New Size(75, 25)
         btnLogin.TabIndex = 9
         btnLogin.Text = "login"
-        btnLogin.UseVisualStyleBackColor = True
+        btnLogin.UseVisualStyleBackColor = False
         ' 
         ' radAdmin
         ' 
         radAdmin.AutoSize = True
-        radAdmin.Location = New Point(372, 339)
+        radAdmin.ForeColor = Color.Red
+        radAdmin.Location = New Point(331, 339)
         radAdmin.Name = "radAdmin"
         radAdmin.Size = New Size(74, 24)
         radAdmin.TabIndex = 10
@@ -108,7 +115,8 @@ Partial Class Form1
         ' radGuest
         ' 
         radGuest.AutoSize = True
-        radGuest.Location = New Point(468, 339)
+        radGuest.ForeColor = Color.Red
+        radGuest.Location = New Point(416, 339)
         radGuest.Name = "radGuest"
         radGuest.Size = New Size(67, 24)
         radGuest.TabIndex = 11
@@ -118,18 +126,31 @@ Partial Class Form1
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(481, 267)
+        Button1.BackColor = Color.Red
+        Button1.ForeColor = Color.White
+        Button1.Location = New Point(428, 267)
         Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
+        Button1.Size = New Size(84, 29)
         Button1.TabIndex = 12
         Button1.Text = "close app"
-        Button1.UseVisualStyleBackColor = True
+        Button1.UseVisualStyleBackColor = False
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Location = New Point(319, 72)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(164, 20)
+        Label4.TabIndex = 13
+        Label4.Text = "APSARA GUESTROOMS"
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(711, 391)
+        BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
+        ClientSize = New Size(867, 447)
+        Controls.Add(Label4)
         Controls.Add(Button1)
         Controls.Add(radGuest)
         Controls.Add(radAdmin)
@@ -141,14 +162,11 @@ Partial Class Form1
         Controls.Add(Label2)
         Controls.Add(Label1)
         Name = "Form1"
-        Text = "       "
+        Text = "Login Form"
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents ChkGuest As CheckBox
-    Friend WithEvents Chkadmin As CheckBox
-    Friend WithEvents Chkhousekeeping As CheckBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtUsername As TextBox
@@ -159,4 +177,6 @@ Partial Class Form1
     Friend WithEvents radAdmin As RadioButton
     Friend WithEvents radGuest As RadioButton
     Friend WithEvents Button1 As Button
+    Friend WithEvents Label4 As Label
 End Class
+
